@@ -1,0 +1,98 @@
+:root{
+    --rotate:700ms
+}
+html{
+    color-scheme: dark;
+}
+body{
+    display:grid;
+    place-content: centre;
+    min-height: 100vh;
+    perspective: 1000px;
+    margin: 10rem;
+}
+img{
+    max-width: 100%;
+}
+.max{
+    width: 350px ;
+    aspect-ratio: 9/10;
+    outline: 3px solid salmon;
+    position: relative;
+    transform-style: preserve-3d;
+    /* background-image:url("maxi.jpeg"); */
+    transition:rotate var(--rotate) ease;
+    margin: auto;
+}
+.max:hover{
+    rotate: x 35deg;
+}
+.max::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    /* background: lightblue; */
+    background-image: radial-gradient(circle,transparent 200px,black);
+    opacity: 0;
+    transition: opacity var(--rotate);
+}
+.max:hover::before{
+    opacity: 1;
+}
+.max::after{
+    content: "";
+    position: absolute;
+    inset: 1.5px;
+    translate: 0;
+    transform: translateZ(-200px);
+    background: black;
+    z-index: 1;
+    filter: blur(1rem);
+    transition: rotate var(--rotate),translate var(--rotate);
+
+}
+.max:hover::after{
+    rotate: x -35deg;
+    translate: 0 60px;
+}
+/* .front-image{
+    margin-right: 1.5rem; */
+/* } */
+
+.logo, .front-image{
+    position: absolute;
+    /* opacity: 1 ; */
+}
+.front-image{
+    opacity: 0;
+    transform-origin: top ;
+    transition: var(--rotate);
+    z-index:1000;
+    scale: 1.5;
+}
+.logo{
+    z-index: 1000;
+    margin-inline: auto;
+    inset: auto 0 .5em;
+    transition: var(--rotate);
+}
+.max:hover .logo, .max:hover .front-image{
+    transform:translateY(-100px) translateZ(45px);
+    rotate: x -35deg;
+}
+.bg-image{
+    position:absolute;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    /* background-size: cover; */
+    object-position:center;
+    
+}
+.max:hover .front-image{
+    opacity: 1;
+    
+
+}
